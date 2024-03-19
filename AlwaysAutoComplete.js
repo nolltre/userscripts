@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Allow autocomplete everywhere, remove onpaste
 // @namespace   Violentmonkey Scripts
-// @match       *://*
+// @match       *://*/*
 // @homepage    https://www.nolltre.se/
 // @supportURL  https://github.com/nolltre/userscripts
 // @downloadURL https://github.com/nolltre/userscripts/raw/master/AlwaysAutoComplete.js
@@ -16,6 +16,9 @@ let allAutocompleteOffFields = document.querySelectorAll(
 );
 
 [...allAutocompleteOffFields].forEach((field) => {
+  console.log(
+    "[Userscript] Removing autocomplete=off for field with id " + field.id,
+  );
   field.removeAttribute("autocomplete");
 });
 
@@ -23,5 +26,9 @@ let allAutocompleteOffFields = document.querySelectorAll(
 let allPasteFalseField = document.querySelectorAll('[onpaste="return false"]');
 
 [...allPasteFalseField].forEach((field) => {
+  console.log(
+    '[Userscript] Removing onpaste="return false" for field with id ' +
+      field.id,
+  );
   field.removeAttribute("onpaste");
-};
+});
