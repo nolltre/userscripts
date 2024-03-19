@@ -5,7 +5,7 @@
 // @homepage    https://www.nolltre.se/
 // @supportURL  https://github.com/nolltre/userscripts
 // @downloadURL https://github.com/nolltre/userscripts/raw/master/AlwaysAutoComplete.js
-// @version     1.0
+// @version     1.0.1
 // @author      Daniel Karmark
 // @description Allows paste and autocomplete everywhere
 // ==/UserScript==
@@ -31,4 +31,6 @@ let allPasteFalseField = document.querySelectorAll('[onpaste="return false"]');
       field.id,
   );
   field.removeAttribute("onpaste");
+  // Also nuke all event listeners attached to the field
+  field.replaceWith(field.cloneNode(true));
 });
